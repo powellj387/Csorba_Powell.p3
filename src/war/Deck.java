@@ -3,7 +3,9 @@ package war;
 public class Deck {
     private int size;
     private ULStack<Card> cards;
-private Card.Suit[] orderedSuits = {Card.Suit.HEARTS, Card.Suit.CLUBS, Card.Suit.DIAMONDS, Card.Suit.SPADES};
+
+    private Card.Suit[] orderedSuits = {Card.Suit.HEARTS, Card.Suit.CLUBS, Card.Suit.DIAMONDS, Card.Suit.SPADES};
+
     private Card.Rank[] orderedRanks = {Card.Rank.KING, Card.Rank.QUEEN, Card.Rank.JACK, Card.Rank.TEN,
             Card.Rank.NINE, Card.Rank.EIGHT, Card.Rank.SEVEN, Card.Rank.SIX, Card.Rank.FIVE, Card.Rank.FOUR,
             Card.Rank.THREE, Card.Rank.TWO, Card.Rank.ACE};

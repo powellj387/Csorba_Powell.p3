@@ -16,7 +16,7 @@ public class MS1Main {
 	
 	public static void main(String[] args) {
 		testUnshuffled();
-		/*testShuffled(2);*/
+		testShuffled(2);
 	}
 	
 
@@ -36,12 +36,12 @@ public class MS1Main {
 	 * @param seed
 	 */
 
-/*	public static void testShuffled(int seed) {
+	public static void testShuffled(int seed) {
 		Deck deck = new Deck();
 		deck.shuffle( new Random(seed) );
 		while( deck.size() != 0 ) {
 			out.println(deck.dealCard());
 		}
-	}*/
+	}
 }
 
