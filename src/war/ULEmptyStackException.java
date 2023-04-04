@@ -1,4 +1,4 @@
 package war;
 
-public class ULEmptyStackException {
+public class ULEmptyStackException extends Throwable {
 }
