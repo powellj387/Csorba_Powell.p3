@@ -1,4 +1,4 @@
 package war;
 
-public class ULEmptyQueueException {
+public class ULEmptyQueueException extends Throwable {
 }
