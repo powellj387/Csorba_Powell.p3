@@ -1,17 +1,18 @@
 package war;
 
+import java.util.*;
+
 public class Deck {
-    private int size;
-    private ULStack<Card> cards;
+    private final ULStack<Card> cards;
 
     private Card.Suit[] orderedSuits = {Card.Suit.HEARTS, Card.Suit.CLUBS, Card.Suit.DIAMONDS, Card.Suit.SPADES};
 
-    private Card.Rank[] orderedRanks = {Card.Rank.KING, Card.Rank.QUEEN, Card.Rank.JACK, Card.Rank.TEN,
+    private Card.Rank[] orderedRanks = {Card.Rank.KING,Card.Rank.QUEEN, Card.Rank.JACK, Card.Rank.TEN,
             Card.Rank.NINE, Card.Rank.EIGHT, Card.Rank.SEVEN, Card.Rank.SIX, Card.Rank.FIVE, Card.Rank.FOUR,
-            Card.Rank.THREE, Card.Rank.TWO, Card.Rank.ACE};
-    public Deck(){
+            Card.Rank.THREE, Card.Rank.TWO,Card.Rank.ACE};
 
-        cards = new ULStack<Card>();
+    public Deck(){
+        cards = new ULStack<>();
         for(Card.Suit suit: orderedSuits){
             for(Card.Rank rank: orderedRanks){
                 Card newCard = new Card(rank, suit);
@@ -20,8 +21,22 @@ public class Deck {
         }
     }
 
-    public void shuffle(java.util.Random prng){
+    public void shuffle(java.util.Random prng) {
+        List<Card> cardList = new ArrayList<>();
 
+        while(!cards.empty()){
+            cardList.add(cards.pop());
+        }
+        Collections.reverse(cardList);
+
+        for (int i = 0; i < 7; i++) {
+            Collections.shuffle(cardList, prng);
+        }
+
+        Collections.reverse(cardList);
+        for (Card card : cardList) {
+            cards.push(card);
+        }
     }
 
     public Card dealCard(){
@@ -33,6 +48,6 @@ public class Deck {
     }
 
     public boolean empty(){
-        return size==0;
+        return cards.size()==0;
     }
 }
