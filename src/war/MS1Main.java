@@ -15,7 +15,7 @@ import java.util.Random;
 public class MS1Main {
 	
 	public static void main(String[] args) {
-	/*	testUnshuffled();*/
+		testUnshuffled();
 		testShuffled(2);
 	}
 	
@@ -24,12 +24,12 @@ public class MS1Main {
 	 * Prints out the contents of an unshuffled deck
 	 */
 
-/*	public static void testUnshuffled() {
+	public static void testUnshuffled() {
 		Deck deck = new Deck();
 		while( deck.size() != 0 ) {
 			out.println(deck.dealCard());
 		}
-	}*/
+	}
 
 /**
 	 * Prints out the contents of a deck shuffled with the given seed.

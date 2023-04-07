@@ -5,11 +5,11 @@ import java.util.*;
 public class Deck {
     private final ULStack<Card> cards;
 
-    private Card.Suit[] orderedSuits = {Card.Suit.HEARTS, Card.Suit.CLUBS, Card.Suit.DIAMONDS, Card.Suit.SPADES};
+    private Card.Suit[] orderedSuits = {Card.Suit.SPADES,Card.Suit.DIAMONDS,Card.Suit.CLUBS,Card.Suit.HEARTS};
 
-    private Card.Rank[] orderedRanks = {Card.Rank.KING,Card.Rank.QUEEN, Card.Rank.JACK, Card.Rank.TEN,
+    private Card.Rank[] orderedRanks = {Card.Rank.ACE,Card.Rank.KING,Card.Rank.QUEEN, Card.Rank.JACK, Card.Rank.TEN,
             Card.Rank.NINE, Card.Rank.EIGHT, Card.Rank.SEVEN, Card.Rank.SIX, Card.Rank.FIVE, Card.Rank.FOUR,
-            Card.Rank.THREE, Card.Rank.TWO,Card.Rank.ACE};
+            Card.Rank.THREE, Card.Rank.TWO};
 
     public Deck(){
         cards = new ULStack<>();
