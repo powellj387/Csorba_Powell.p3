@@ -12,7 +12,7 @@ public class ULStack<E> implements Cloneable {
 
     public void push(E item) {
         Node<E> newNode = new Node<>(item);
-        newNode.next = top;
+        newNode.nextNode = top;
         top = newNode;
         size++;
     }
@@ -21,8 +21,8 @@ public class ULStack<E> implements Cloneable {
         if (empty()) {
             throw new ULEmptyStackException();
         }
-        E item = top.item;
-        top = top.next;
+        E item = top.data;
+        top = top.nextNode;
         size--;
         return item;
     }
@@ -31,7 +31,7 @@ public class ULStack<E> implements Cloneable {
         if (empty()) {
             throw new ULEmptyStackException();
         }
-        return top.item;
+        return top.data;
     }
 
     public int size() {
@@ -51,25 +51,25 @@ public class ULStack<E> implements Cloneable {
         ULStack<E> copy = new ULStack<>();
         copy.size = size;
         if (top != null) {
-            copy.top = new Node<>(top.item);
-            Node<E> currNode = top.next;
+            copy.top = new Node<>(top.data);
+            Node<E> currNode = top.nextNode;
             Node<E> copyNode = copy.top;
             while (currNode != null) {
-                copyNode.next = new Node<>(currNode.item);
-                currNode = currNode.next;
-                copyNode = copyNode.next;
+                copyNode.nextNode = new Node<>(currNode.data);
+                currNode = currNode.nextNode;
+                copyNode = copyNode.nextNode;
             }
         }
         return copy;
     }
 
     private static class Node<E> {
-        private E item;
-        private Node<E> next;
+        private E data;
+        private Node<E> nextNode;
 
         private Node(E item) {
-            this.item = item;
-            this.next = null;
+            data = item;
+            nextNode = null;
         }
     }
 }

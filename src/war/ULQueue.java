@@ -83,7 +83,6 @@ public class ULQueue<E> implements Cloneable {
         front = 0;
         back = 0;
         size = 0;
-
     }
 
     public ULQueue<E> clone(){
