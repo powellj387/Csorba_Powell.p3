@@ -15,8 +15,7 @@ public class Deck {
         cards = new ULStack<>();
         for(Card.Suit suit: orderedSuits){
             for(Card.Rank rank: orderedRanks){
-                Card newCard = new Card(rank, suit);
-                cards.push(newCard);
+                cards.push(new Card(rank, suit));
             }
         }
     }
@@ -24,10 +23,9 @@ public class Deck {
     public void shuffle(java.util.Random prng) {
         List<Card> cardList = new ArrayList<>();
 
-        while(!cards.empty()){
+        while(!cards.empty()) {
             cardList.add(cards.pop());
         }
-        Collections.reverse(cardList);
 
         for (int i = 0; i < 7; i++) {
             Collections.shuffle(cardList, prng);
