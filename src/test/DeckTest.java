@@ -25,7 +25,6 @@ public class DeckTest {
         testDeck.push(new Card(Card.Rank.THREE, Card.Suit.SPADES));
         testDeck.push(new Card(Card.Rank.TWO, Card.Suit.SPADES));
 
-
         testDeck.push(new Card(Card.Rank.ACE, Card.Suit.DIAMONDS));
         testDeck.push(new Card(Card.Rank.KING, Card.Suit.DIAMONDS));
         testDeck.push(new Card(Card.Rank.QUEEN, Card.Suit.DIAMONDS));

@@ -15,7 +15,7 @@ import java.util.Random;
 public class MS1Main {
 	
 	public static void main(String[] args) {
-		testUnshuffled();
+		//testUnshuffled();
 		testShuffled(2);
 	}
 	
