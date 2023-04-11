@@ -1,10 +1,10 @@
-/*
+
 package test;
 
 import war.ULEmptyStackException;
 import war.ULStack;
 
-*/
+
 /**
  * This class is designed to help you test whether your ULStack code will compile in my JUnit tests.
  * Be sure that you can compile this class, unmodified.  
@@ -13,7 +13,7 @@ import war.ULStack;
  * Your code compiling with this class is not a sufficient level of testing.
  * @author Joe Meehean
  *
- *//*
+ */
 
 public class P3StackCompilationStub {
 
@@ -33,4 +33,3 @@ public class P3StackCompilationStub {
 		RuntimeException e2 = new ULEmptyStackException("hello");
 	}
 }
-*/
