@@ -2,18 +2,18 @@ package war;
 
 import java.util.ArrayList;
 public class Player {
-    private ArrayList<Card> hand;
+    private  ULQueue<Card> hand;
 
     public Player() {
-        hand = new ArrayList<Card>();
+        hand = new ULQueue<>();
     }
 
     public void takeCard(Card aCard) {
-        hand.add(aCard);
+        hand.push(aCard);
     }
 
     public Card playCard() {
-        return hand.remove(0);
+        return hand.pop();
     }
 
     public int cardsInHand() {

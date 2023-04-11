@@ -48,7 +48,7 @@ public class ULQueue<E> implements Cloneable {
             throw new ULEmptyQueueException();
         }
         E item = data[front];
-        data[front] = null; // avoid loitering
+        data[front] = null;
         size--;
         front++;
         if (front == data.length) {
@@ -89,10 +89,10 @@ public class ULQueue<E> implements Cloneable {
     public ULQueue<E> clone(){
         try {
             ULQueue<E> copy = (ULQueue<E>) super.clone();
-            copy.data = data.clone(); // Shallow copy of the data array
+            copy.data = data.clone();
             return copy;
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Can't happen since we implement Cloneable
+            throw new AssertionError();
         }
     }
 
