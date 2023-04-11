@@ -3,7 +3,7 @@ package war;
 public class Card{
     public enum Rank
     {
-        TWO("2"),THREE("3"),TEN("T"),SIX("6"),SEVEN("7"),
+        TWO("2"),THREE("3"),TEN("10"),SIX("6"),SEVEN("7"),
         QUEEN("Q"),NO_RANK(""),NINE("9"),KING("K"),
         JACK("J"),FOUR("4"),FIVE("5"),EIGHT("8"),ACE("A");
 
