@@ -3,9 +3,8 @@ package war;
 public class Card{
     public enum Rank
     {
-        TWO("2"),THREE("3"),TEN("10"),SIX("6"),SEVEN("7"),
-        QUEEN("Q"),NO_RANK(""),NINE("9"),KING("K"),
-        JACK("J"),FOUR("4"),FIVE("5"),EIGHT("8"),ACE("A");
+        NO_RANK(""),TWO("2"),THREE("3"),FOUR("4"),FIVE("5"),SIX("6"),SEVEN("7"),EIGHT("8"),NINE("9"),
+        TEN("10"),JACK("J"), QUEEN("Q"),KING("K"),ACE("A");
 
         private String abbreviation;
 
