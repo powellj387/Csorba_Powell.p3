@@ -47,7 +47,6 @@ public class War {
                 player2.takeCard(card2);
                 player2.takeCard(card1);
             }else {
-                // if A war occurs and both have enough cards to do said war
                 ULStack<Card> warCards1 = new ULStack<>();
                 ULStack<Card> warCards2 = new ULStack<>();
 
@@ -123,11 +122,6 @@ public class War {
                     // Determine the winner of the war
                     int warComparison = warCards1.pop().compareRanks(warCards2.pop());
                     while (warComparison == 0) {
-                        // Another war occurs
-                        if (player1.cardsInHand() < CARDS_IN_WAR + 1 || player2.cardsInHand() < CARDS_IN_WAR + 1) {
-                            // One player doesn't have enough cards for another war
-                            break;
-                        }
 
                         // Each player plays 2 face-down cards and a face-up card
                         for (int i = 0; i < CARDS_IN_WAR; i++) {
