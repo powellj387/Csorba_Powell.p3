@@ -14,14 +14,15 @@ public class War {
         userinterface = ui;
     }
 
-    public void playGame(){
+    public void playGame() {
+        int battlesPlayed = 0;
         Deck deck = new Deck();
         deck.shuffle(random);
 
         // Create two players and deal the cards to them
         Player player1 = new Player();
         Player player2 = new Player();
-        while(!deck.empty()){
+        while (!deck.empty()) {
             player1.takeCard(deck.dealCard());
             player2.takeCard(deck.dealCard());
         }
@@ -30,98 +31,104 @@ public class War {
         userinterface.newGame();
 
         // Play the game until one player runs out of cards
-        while(player1.cardsInHand() != 0 && player2.cardsInHand() != 0){
-            userinterface.displayPostBattleScores(player1.cardsInHand(), player2.cardsInHand());
+        while (player1.cardsInHand() != 0 && player2.cardsInHand() != 0) {
 
+            if (battlesPlayed % 5 == 0) {
+                userinterface.displayPostBattleScores(player1.cardsInHand(), player2.cardsInHand());
+            }
             // Each player plays a card
             Card card1 = player1.playCard();
             Card card2 = player2.playCard();
-            userinterface.displaySingleCardBattle(card1,card2);
+            userinterface.displaySingleCardBattle(card1, card2);
 
             // Determine the winner of the battle
-            int comparison = card1.compareRanks(card2);
-            if (comparison > 0){
+            int battleComp = card1.compareRanks(card2);
+
+            if(battleComp>0){
                 player1.takeCard(card1);
                 player1.takeCard(card2);
-            } else if (comparison < 0) {
-                player2.takeCard(card1);
+            } else if (battleComp<0) {
                 player2.takeCard(card2);
-            }else{
+                player2.takeCard(card1);
+            }else {
                 // if A war occurs and both have enough cards to do said war
-                if(player1.cardsInHand() >= CARDS_IN_WAR && player2.cardsInHand() >= CARDS_IN_WAR) {
-                    ArrayList<Card> warCards1 = new ArrayList<>();
-                    ArrayList<Card> warCards2 = new ArrayList<>();
 
-                    // Each player plays 2 face-down card and a face-up card
-                    for (int i = 0; i < CARDS_IN_WAR; ++i) {
-                        warCards1.add(player1.playCard());
-                        warCards2.add(player2.playCard());
+                ArrayList<Card> warCards1 = new ArrayList<>();
+                ArrayList<Card> warCards2 = new ArrayList<>();
+
+                // Each player plays 2 face-down card and a face-up card
+                for(int i = 0; i<CARDS_IN_WAR;++i){
+                    warCards1.add(player1.playCard());
+                    warCards2.add(player2.playCard());
+                }
+
+                userinterface.displayWar(CARDS_IN_WAR-1,warCards1.get(2),CARDS_IN_WAR-1,warCards2.get(2));
+
+                // Determine the winner of the war
+                int warComp = warCards1.get(2).compareRanks(warCards2.get(2));
+
+                if(warComp>0){
+                   while(warCards1.size()!=0){
+                    player1.takeCard(warCards1.remove(warCards1.size()-1));
+                   }
+                   player1.takeCard(card1);
+                    while(warCards2.size()!=0){
+                        player1.takeCard(warCards2.remove(warCards2.size()-1));
                     }
-                    warCards1.add(card1);
-                    warCards2.add(card2);
+                    player1.takeCard(card2);
+                }
+                else if (warComp<0) {
+                    while(warCards2.size()!=0){
+                        player2.takeCard(warCards2.remove(warCards2.size()-1));
+                    }
+                    player2.takeCard(card2);
 
-                    Card faceUp1 = new Card(warCards1.get(2).getRank(),warCards1.get(2).getSuit());
-                    Card faceUp2 = new Card(warCards2.get(2).getRank(),warCards2.get(2).getSuit());
-
-                    userinterface.displayWar(warCards1.size(),faceUp1, warCards2.size(), faceUp2);
-
-                    // Determine the winner of the war
-                    int warComparison = faceUp1.compareRanks(faceUp2);
-
-                    while (warComparison == 0) {
-                        // Another war occurs
-                        if (player1.cardsInHand() < CARDS_IN_WAR + 1 || player2.cardsInHand() < CARDS_IN_WAR + 1) {
-                            // One player doesn't have enough cards for another war
-                            break;
-                        }
-
-                        // Each player plays 2 face-down cards and a face-up card
-                        for (int i = 0; i < CARDS_IN_WAR; i++) {
+                    while(warCards1.size()!=0){
+                        player2.takeCard(warCards1.remove(warCards1.size()-1));
+                    }
+                    player2.takeCard(card1);
+                }
+                else{
+                    while (warComp==0){
+                        // Each player plays 2 face-down card and a face-up card
+                        for(int i = 0; i<CARDS_IN_WAR;++i){
                             warCards1.add(player1.playCard());
                             warCards2.add(player2.playCard());
                         }
 
-                        warCards1.add(card1);
-                        warCards2.add(card2);
+                        userinterface.displayWar(CARDS_IN_WAR-1,warCards1.get(5),CARDS_IN_WAR-1,warCards2.get(5));
 
-                        faceUp1 = new Card(warCards1.get(0).getRank(),warCards1.get(0).getSuit());
-                        faceUp2 = new Card(warCards2.get(0).getRank(),warCards2.get(0).getSuit());
+                        // Determine the winner of the war
+                        warComp = warCards1.get(5).compareRanks(warCards2.get(5));
 
-                        userinterface.displayWar(warCards1.size(),faceUp1, warCards2.size(), faceUp2);
-
-
-                        // Determine the winner of the next battle
-                        warComparison = faceUp1.compareRanks(faceUp2);
-                    }
-
-                    if (warComparison > 0){
-                        // Player 1 wins the war
-                        //player1.takeCard(faceUp1);
-                        while (warCards1.size()!=0) {
-                            player1.takeCard(warCards1.remove(0));
+                        if(warComp>0){
+                            while(warCards1.size()!=0){
+                                player1.takeCard(warCards1.remove(warCards1.size()-1));
+                            }
+                            player1.takeCard(card1);
+                            while(warCards2.size()!=0){
+                                player1.takeCard(warCards2.remove(warCards2.size()-1));
+                            }
+                            player1.takeCard(card2);
                         }
-                       // player1.takeCard(faceUp2);
-                        while (warCards2.size()!=0) {
-                            player1.takeCard(warCards2.remove(0));
-                        }
-                    } else {
-                        // Player 2 wins the war
-                       // player2.takeCard(faceUp2);
-                        while (warCards2.size()!=0) {
-                            player2.takeCard(warCards2.remove(0));
-                        }
-                       // player2.takeCard(faceUp1);
-                        while (warCards1.size()!=0) {
-                            player2.takeCard(warCards1.remove(0));
+                        else if (warComp<0) {
+                            while(warCards2.size()!=0){
+                                player2.takeCard(warCards2.remove(warCards2.size()-1));
+                            }
+                            player2.takeCard(card2);
+
+                            while(warCards1.size()!=0){
+                                player2.takeCard(warCards1.remove(warCards1.size()-1));
+                            }
+                            player2.takeCard(card1);
                         }
                     }
                 }
+                // Determine the winner of the game and display the results
             }
-            // Determine the winner of the game and display the results
-            if (player1.cardsInHand() == 0 || player2.cardsInHand() == 0) {
-                userinterface.displayGameOver(player1.cardsInHand(), player2.cardsInHand());
-            }
+            ++battlesPlayed;
         }
+        userinterface.displayGameOver(player1.cardsInHand(),player2.cardsInHand());
     }
 
     public void testPlayGame(Player player1, Player player2){
