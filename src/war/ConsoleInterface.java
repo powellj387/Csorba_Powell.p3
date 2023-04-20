@@ -25,8 +25,33 @@ public class ConsoleInterface {
     }
 
     public void displayWar(int p1CardsPlayed, Card p1FaceUp, int p2CardsPlayed, Card p2FaceUp){
-        for(int i=0; i< p1CardsPlayed;++i) {
-            output.println("X\tX");
+        int cardPlayDiff;
+        int cardsForWar = 2;
+        //base case of both players having the necessary number of cards to conduct a war
+        if(p1CardsPlayed == cardsForWar && p2CardsPlayed == cardsForWar) {
+            for (int i = 0; i < p1CardsPlayed; ++i) {
+                output.println("X\tX");
+            }
+        } else if (p1CardsPlayed<cardsForWar && p2CardsPlayed==cardsForWar) {
+            cardPlayDiff = cardsForWar-p1CardsPlayed;
+            for(int i=0; i<p1CardsPlayed;++i){
+                output.println("X\tX");
+            }
+            for(int i=0; i<cardPlayDiff;++i){
+                output.println("-\tX");
+            }
+        }else if (p2CardsPlayed<cardsForWar && p1CardsPlayed==cardsForWar) {
+            cardPlayDiff = cardsForWar-p2CardsPlayed;
+            for(int i=0; i<p2CardsPlayed;++i){
+                output.println("X\tX");
+            }
+            for(int i=0; i<cardPlayDiff;++i){
+                output.println("X\t-");
+            }
+        }else{
+            for(int i=0; i<cardsForWar; ++i){
+                output.println("-\t-");
+            }
         }
         output.println(p1FaceUp+"\t"+p2FaceUp);
     }
