@@ -16,7 +16,6 @@ public class War {
     }
 
     public void playGame() {
-        int battlesPlayed = 0;
         Deck deck = new Deck();
         deck.shuffle(random);
 
@@ -41,16 +40,23 @@ public class War {
             // Determine the winner of the battle
             int battleComp = card1.compareRanks(card2);
 
+            //if player 1 won the battle
             if(battleComp>0){
                 player1.takeCard(card1);
                 player1.takeCard(card2);
-            } else if (battleComp<0) {
+            }
+            //if player 2 won the battle
+            else if (battleComp<0) {
                 player2.takeCard(card2);
                 player2.takeCard(card1);
-            }else {
+            }
+            //if players have the same rank card -> time for war
+            else {
                 ULStack<Card> warCards1 = new ULStack<>();
                 ULStack<Card> warCards2 = new ULStack<>();
 
+                //Loop ensures that so long as players keep playing the same cards after
+                //a war, a new war will ensue
                 while (battleComp==0){
                  // Each player plays 2 face-down card and a face-up card
                     for(int i = 0; i<CARDS_IN_WAR;++i){
@@ -63,6 +69,7 @@ public class War {
                     // Determine the winner of the war
                     battleComp = warCards1.top().compareRanks(warCards2.top());
 
+                    //if player 1 won the battle
                     if(battleComp>0){
                         while(warCards1.size()!=0){
                             player1.takeCard(warCards1.pop());
@@ -73,6 +80,7 @@ public class War {
                         }
                         player1.takeCard(card2);
                     }
+                    //if player 2 won the battle
                     else if (battleComp<0) {
                         while(warCards2.size()!=0){
                             player2.takeCard(warCards2.pop());
