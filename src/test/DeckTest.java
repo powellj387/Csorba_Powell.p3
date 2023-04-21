@@ -1,3 +1,4 @@
+//@authors Alex Csorba and Julian Powell
 package test;
 
 import org.junit.jupiter.api.Test;

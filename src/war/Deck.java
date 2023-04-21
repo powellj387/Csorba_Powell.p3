@@ -1,3 +1,4 @@
+//@authors Alex Csorba and Julian Powell
 package war;
 
 import java.util.*;
@@ -13,6 +14,8 @@ public class Deck {
 
     public Deck(){
         cards = new ULStack<>();
+
+        //creates cards using the rank/suit orderings and pushes them into a new deck
         for(Card.Suit suit: orderedSuits){
             for(Card.Rank rank: orderedRanks){
                 cards.push(new Card(rank, suit));
@@ -23,14 +26,16 @@ public class Deck {
     public void shuffle(java.util.Random prng) {
         List<Card> cardList = new ArrayList<>();
 
+        //puts every card from the deck into an arraylist so shuffling is possible
         while(!cards.empty()) {
             cardList.add(cards.pop());
         }
-
+        //shuffles the deck
         for (int i = 0; i < 7; i++) {
             Collections.shuffle(cardList, prng);
         }
 
+        //puts the cards from the arraylist back into the deck
         Collections.reverse(cardList);
         for (Card card : cardList) {
             cards.push(card);
