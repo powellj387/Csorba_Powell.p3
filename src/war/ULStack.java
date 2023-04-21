@@ -10,6 +10,7 @@ public class ULStack<E> implements Cloneable {
         size = 0;
     }
 
+    //Adds the specified item to the top of the stack.
     public void push(E item) {
         Node<E> newNode = new Node<>(item);
         newNode.nextNode = top;
@@ -17,6 +18,7 @@ public class ULStack<E> implements Cloneable {
         size++;
     }
 
+    //Removes and returns the top item from the stack
     public E pop() throws ULEmptyStackException {
         if (empty()) {
             throw new ULEmptyStackException();
@@ -27,6 +29,7 @@ public class ULStack<E> implements Cloneable {
         return item;
     }
 
+    //Returns the top item of the stack without removing it
     public E top() throws ULEmptyStackException {
         if (empty()) {
             throw new ULEmptyStackException();
@@ -34,19 +37,23 @@ public class ULStack<E> implements Cloneable {
         return top.data;
     }
 
+    //Returns the number of items in the stack.
     public int size() {
         return size;
     }
 
+    //Checks if the stack is empty.
     public boolean empty() {
         return size == 0;
     }
 
+    //Removes all items from the stack.
     public void clear() {
         top = null;
         size = 0;
     }
 
+    //Creates a copy of the stack.
     public ULStack<E> clone() {
         ULStack<E> copy = new ULStack<>();
         copy.size = size;
@@ -63,6 +70,7 @@ public class ULStack<E> implements Cloneable {
         return copy;
     }
 
+    //The Node class represents a node in the singly-linked list used to implement the stack.
     private static class Node<E> {
         private E data;
         private Node<E> nextNode;
