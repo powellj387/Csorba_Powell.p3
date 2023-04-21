@@ -1,3 +1,4 @@
+//@authors Alex Csorba and Julian Powell
 package war;
 
 import java.util.*;
@@ -13,6 +14,7 @@ public class Deck {
 
     public Deck(){
         cards = new ULStack<>();
+        //
         for(Card.Suit suit: orderedSuits){
             for(Card.Rank rank: orderedRanks){
                 cards.push(new Card(rank, suit));

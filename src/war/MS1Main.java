@@ -1,6 +1,5 @@
-
+//@authors Alex Csorba and Julian Powell
 package war;
-
 import static java.lang.System.out;
 
 import java.util.Random;

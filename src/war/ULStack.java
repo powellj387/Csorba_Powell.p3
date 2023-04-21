@@ -1,3 +1,4 @@
+//@authors Alex Csorba and Julian Powell
 package war;
 
 public class ULStack<E> implements Cloneable {

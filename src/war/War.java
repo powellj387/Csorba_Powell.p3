@@ -1,3 +1,4 @@
+//@authors Alex Csorba and Julian Powell
 package war;
 import java.util.ArrayList;
 import java.util.List;

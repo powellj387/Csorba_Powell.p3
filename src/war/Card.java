@@ -1,4 +1,4 @@
-//@authors Julian Powell and Alex Csorba
+//@authors Alex Csorba and Julian Powell
 package war;
 public class Card{
     public enum Rank
